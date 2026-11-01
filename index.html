@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retoque · Salón &amp; Barbería</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d1a1f;--ivory:#f7f2ea;--card:#fffdf9;--gold:#b9955b;--gold2:#9a7a45;--wine:#6b2c3e;--line:#e4dccd;--muted:#7a7068;--ok:#4d7a5a;--bad:#a8473f}
+*{box-sizing:border-box}body{margin:0;background:var(--ivory);color:var(--ink);font:400 16px/1.5 Jost,system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margin:0}
+header{background:var(--ink);color:var(--ivory);display:flex;align-items:center;gap:24px;padding:14px 32px;position:sticky;top:0;z-index:5;flex-wrap:wrap}
+.brand{font-size:30px;letter-spacing:.08em;color:var(--gold);cursor:pointer}.brand small{font:300 11px Jost;letter-spacing:.3em;color:#cbbfae;margin-left:10px;text-transform:uppercase}
+nav{display:flex;gap:6px;flex:1;flex-wrap:wrap}nav a,.lnk{color:#e9e0d1;padding:8px 14px;border-radius:2px;cursor:pointer;font-size:14px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid transparent}
+nav a:hover,nav a.on{border-color:var(--gold);color:var(--gold)}
+main{max-width:1000px;margin:0 auto;padding:36px 24px 80px}
+.hero{background:linear-gradient(135deg,var(--ink),#3a2630);color:var(--ivory);padding:70px 48px;border-radius:4px;margin-bottom:40px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border:1px solid var(--gold);border-radius:50%;opacity:.5}
+.hero h1{font-size:56px;line-height:1.05}.hero p{max-width:480px;color:#d8cdbd;font-weight:300;margin:16px 0 28px}
+h2{font-size:34px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 22px}h2+.sub:before{content:"";display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:18px 20px}
+.card.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}.pick{cursor:pointer}.pick:hover{border-color:var(--gold)}
+.card h3{font-size:22px}.muted{color:var(--muted);font-size:14px}.price{color:var(--gold2);font-weight:500}
+.btn{background:var(--gold);color:var(--ink);border:0;padding:11px 24px;font:500 14px Jost;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px}
+.btn:hover{background:#c9a56a}.btn.alt{background:transparent;border:1px solid var(--gold2);color:var(--gold2)}.btn.bad{background:transparent;border:1px solid var(--bad);color:var(--bad)}.btn.sm{padding:6px 14px;font-size:12px}
+.sec{margin:34px 0 0;padding-top:22px;border-top:1px solid var(--line)}.step{font:600 12px Jost;letter-spacing:.25em;color:var(--gold2);text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:10px}.chip{border:1px solid var(--line);background:var(--card);padding:9px 16px;border-radius:30px;cursor:pointer;font-size:14px}.chip.sel{background:var(--ink);color:var(--gold);border-color:var(--ink)}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-top:14px}
+.slot{padding:9px 0;text-align:center;border:1px solid var(--line);background:var(--card);cursor:pointer;border-radius:2px;font-size:14px}.slot.sel{background:var(--ink);color:var(--gold)}
+.slot.no{opacity:.35;text-decoration:line-through;cursor:not-allowed;background:transparent}
+input,textarea{font:inherit;padding:10px 12px;border:1px solid var(--line);background:#fff;border-radius:2px;width:100%}input:focus,textarea:focus{outline:1px solid var(--gold)}
+label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+.form{max-width:440px}.row{display:flex;gap:12px}.row>*{flex:1}.tabs{display:flex;gap:18px;margin-bottom:10px}.tabs a{cursor:pointer;padding-bottom:4px;color:var(--muted)}.tabs a.on{color:var(--ink);border-bottom:2px solid var(--gold)}
+.badge{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid}
+.Programada{color:var(--gold2)}.Completada{color:var(--ok)}.Cancelada{color:var(--bad)}
+.cita{display:flex;gap:18px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}.cita h3{text-transform:capitalize}
+.sum{background:var(--ink);color:var(--ivory);padding:22px 26px;border-radius:3px;margin-top:20px}.sum b{color:var(--gold)}.cd{font:600 26px 'Cormorant Garamond',serif;color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left}th{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.bar{height:8px;background:var(--gold);border-radius:4px}#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--ivory);padding:12px 24px;border-left:3px solid var(--gold);border-radius:2px;display:none;z-index:9}#toast.bad{border-color:var(--bad)}
+@media(max-width:640px){header{padding:12px 16px}.hero{padding:40px 24px}.hero h1{font-size:40px}}
+</style></head><body>
+<header><div class="brand" data-a="go" data-v="inicio">Retoque<small>Salón &amp; Barbería</small></div><nav id="nav"></nav><div id="who"></div></header>
+<main id="app"></main><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s), money=n=>'RD$ '+Number(n).toLocaleString('es-DO'), esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>new Date(Date.now()-4*3600e3).toISOString().slice(0,10);
+const longDate=f=>new Date(f+'T12:00').toLocaleDateString('es-DO',{weekday:'long',day:'numeric',month:'long'});
+let S={token:localStorage.getItem('rt'),user:null,view:'inicio',serv:[],emp:[],mode:'login'};
+let R={emp:null,serv:[],fecha:'',slots:null,hora:'',hold:null}, RS=null, AD=null, MY=[], timer=null;
+
+async function api(p,o={}){
+  const r=await fetch('/api'+p,{method:o.method||(o.body?'POST':'GET'),headers:{'Content-Type':'application/json',...(S.token?{Authorization:'Bearer '+S.token}:{})},body:o.body?JSON.stringify(o.body):undefined});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok){ if(r.status===401&&S.token){out();} throw new Error(j.error||'Error'); } return j;
+}
+function toast(m,bad){const t=$('#toast');t.textContent=m;t.className=bad?'bad':'';t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',3600);}
+const guard=fn=>async(...a)=>{try{await fn(...a)}catch(e){toast(e.message,true)}};
+function setSession(j){S.token=j.token;S.user=j.user;localStorage.setItem('rt',j.token);}
+function out(){S.token=null;S.user=null;localStorage.removeItem('rt');clearHold();R={emp:null,serv:[],fecha:'',slots:null,hora:'',hold:null};go('inicio');}
+function go(v){S.view=v;render();window.scrollTo(0,0);}
+
+function chrome(){
+  const items=[['inicio','Inicio'],['reservar','Reservar'],['citas','Mis citas'],['perfil','Perfil']];if(S.user?.admin)items.push(['admin','Administración']);
+  $('#nav').innerHTML=items.map(([v,t])=>`<a class="${S.view===v?'on':''}" data-a="go" data-v="${v}">${t}</a>`).join('');
+  $('#who').innerHTML=S.user?`<span class="muted" style="color:#cbbfae">${esc(S.user.nombre)}</span> <span class="lnk" data-a="logout">Salir</span>`:`<span class="lnk" data-a="go" data-v="auth">Entrar</span>`;
+}
+async function render(){
+  chrome();const v=S.view,a=$('#app');
+  if(['reservar','citas','perfil','admin'].includes(v)&&!S.user){S.mode='login';return a.innerHTML=authView('Inicia sesión para continuar');}
+  if(v==='inicio')a.innerHTML=home();
+  else if(v==='auth')a.innerHTML=authView();
+  else if(v==='reservar')a.innerHTML=book();
+  else if(v==='perfil')a.innerHTML=perfil();
+  else if(v==='citas'){a.innerHTML='<p class="muted">Cargando…</p>';try{MY=await api('/citas');}catch(e){toast(e.message,true)}a.innerHTML=citas();}
+  else if(v==='admin'){a.innerHTML='<p class="muted">Cargando…</p>';await loadAdmin(AD?.fecha);}
+}
+const svcCard=s=>`<div class="card"><h3>${esc(s.nombre)}</h3><div class="muted">${s.duracion_min} min</div><div class="price">${money(s.precio)}</div></div>`;
+function home(){
+  const by=a=>S.serv.filter(s=>s.area===a).map(svcCard).join('');
+  return `<section class="hero"><div class="step" style="color:var(--gold)">Estilo · Cuidado · Detalle</div><h1>El arte del retoque</h1><p>Reserva tu cita en nuestro salón o barbería en pocos pasos y elige el horario que mejor se ajuste a ti.</p><button class="btn" data-a="go" data-v="reservar">Reservar cita</button></section>
+  <h2>Salón</h2><p class="sub">Color, corte y cuidado de manos</p><div class="grid">${by('Salón')}</div>
+  <h2 style="margin-top:44px">Barbería</h2><p class="sub">Corte, barba y afeitado clásico</p><div class="grid">${by('Barbería')}</div>`;
+}
+function authView(msg){
+  const reg=S.mode==='registro';
+  return `<div class="form"><h2>${reg?'Crear perfil':'Bienvenido'}</h2><p class="sub">${msg||(reg?'Regístrate para reservar y gestionar tus citas':'Accede a tu perfil de Retoque')}</p>
+  <div class="tabs"><a class="${reg?'':'on'}" data-a="mode" data-m="login">Entrar</a><a class="${reg?'on':''}" data-a="mode" data-m="registro">Registrarme</a></div>
+  ${reg?`<div class="row"><div><label>Nombre</label><input id="f_nombre"></div><div><label>Apellido</label><input id="f_apellido"></div></div><label>Teléfono</label><input id="f_telefono" placeholder="809-000-0000">`:''}
+  <label>Correo</label><input id="f_email" type="email"><label>Contraseña</label><input id="f_password" type="password">
+  ${reg?`<label>Preferencias (opcional)</label><textarea id="f_pref" rows="2" placeholder="Ej.: degradado bajo, tintes sin amoníaco"></textarea>`:''}
+  <p><button class="btn" data-a="${reg?'registro':'login'}">${reg?'Crear perfil':'Entrar'}</button></p></div>`;
+}
+const val=id=>($('#'+id)?.value||'').trim();
+
+// ----- Reservar -----
+const empSel=()=>S.emp.find(e=>e.id_empleado===R.emp);
+const svcsSel=()=>S.serv.filter(s=>R.serv.includes(s.id_servicio));
+const slotGrid=(slots,sel,act)=>`<div class="slots">${slots.map(s=>`<div class="slot ${s.libre?'':'no'} ${sel===s.hora?'sel':''}" ${s.libre?`data-a="${act}" data-h="${s.hora}"`:''}>${s.hora}</div>`).join('')}</div>`;
+function book(){
+  const e=empSel(),ss=svcsSel(),dur=ss.reduce((a,s)=>a+s.duracion_min,0),tot=ss.reduce((a,s)=>a+ +s.precio,0);
+  let h=`<h2>Reservar cita</h2><p class="sub">Tu horario se reserva por 5 minutos mientras confirmas</p><div class="step">1 · Profesional</div><div class="grid" style="margin-top:10px">`+
+   S.emp.map(x=>`<div class="card pick ${R.emp===x.id_empleado?'sel':''}" data-a="emp" data-id="${x.id_empleado}"><h3>${esc(x.nombre)} ${esc(x.apellido)}</h3><div class="muted">${x.area} · ${esc(x.especialidad||'')}</div></div>`).join('')+`</div>`;
+  if(e){h+=`<div class="sec"><div class="step">2 · Servicios</div><div class="chips" style="margin-top:10px">`+S.serv.filter(s=>s.area===e.area).map(s=>`<div class="chip ${R.serv.includes(s.id_servicio)?'sel':''}" data-a="serv" data-id="${s.id_servicio}">${esc(s.nombre)} · ${money(s.precio)} · ${s.duracion_min} min</div>`).join('')+`</div></div>`;}
+  if(ss.length){h+=`<div class="sec"><div class="step">3 · Fecha y hora</div><p class="muted">Duración total: ${dur} min · ${money(tot)}</p><input type="date" id="fecha" min="${today()}" value="${R.fecha}" data-a="fecha" style="max-width:220px">${R.slots?slotGrid(R.slots,R.hora,'hora'):''}</div>`;}
+  if(R.hold){h+=`<div class="sum"><div class="step" style="color:var(--gold)">Resumen</div><h3 style="font-size:26px;margin:4px 0">${esc(e.nombre)} ${esc(e.apellido)}</h3><div>${ss.map(s=>esc(s.nombre)).join(' + ')}</div><div style="text-transform:capitalize">${longDate(R.fecha)} · ${R.hora}</div><p>Total <b>${money(tot)}</b> · Reserva temporal: <span class="cd" id="cd"></span></p><button class="btn" data-a="confirmar">Confirmar cita</button> <button class="btn alt" data-a="liberar">Liberar</button></div>`;}
+  return h;
+}
+function clearHold(){clearInterval(timer);timer=null;}
+async function release(){if(R.hold){R.hold=null;clearHold();try{await api('/hold',{method:'DELETE'})}catch{}}R.hora='';}
+function startTimer(){clearHold();const tick=()=>{const s=Math.max(0,Math.round((R.hold.exp-Date.now())/1000));const c=$('#cd');if(c)c.textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');if(!s){R.hold=null;clearHold();toast('Tu reserva temporal expiró',true);loadSlots();}};tick();timer=setInterval(tick,1000);}
+async function loadSlots(){if(!R.fecha||!R.emp){R.slots=null;return render();}
+  try{R.slots=await api(`/disponibilidad?empleado=${R.emp}&fecha=${R.fecha}&dur=${svcsSel().reduce((a,s)=>a+s.duracion_min,0)}`);}catch(e){toast(e.message,true)}
+  $('#app').innerHTML=book();if(R.hold)startTimer();}
+
+// ----- Mis citas -----
+function citas(){
+  if(!MY.length)return `<h2>Mis citas</h2><p class="sub">Aún no tienes citas.</p><button class="btn" data-a="go" data-v="reservar">Reservar ahora</button>`;
+  return `<h2>Mis citas</h2><p class="sub">Reprograma o cancela tus citas programadas</p>`+MY.map(c=>`<div class="card"><div class="cita"><div><h3>${longDate(c.fecha)} · ${c.hora}</h3><div>${esc(c.servicios)}</div><div class="muted">con ${esc(c.empleado)} · ${c.dur} min · ${money(c.total)}</div></div>
+  <div style="text-align:right"><span class="badge ${c.estado}">${c.estado}</span>${c.estado==='Programada'?`<div style="margin-top:12px"><button class="btn alt sm" data-a="reprog" data-id="${c.id_cita}">Reprogramar</button> <button class="btn bad sm" data-a="cancelar" data-id="${c.id_cita}">Cancelar</button></div>`:''}</div></div>
+  ${RS&&RS.id===c.id_cita?`<div class="sec" style="margin-top:0"><label>Nueva fecha</label><input type="date" min="${today()}" value="${RS.fecha}" data-a="rfecha" style="max-width:220px">${RS.slots?slotGrid(RS.slots,'','rhora'):''}</div>`:''}</div>`).join('<div style="height:12px"></div>');
+}
+
+// ----- Perfil / Admin -----
+function perfil(){const u=S.user;return `<div class="form"><h2>Mi perfil</h2><p class="sub">${esc(u.email)}</p><div class="row"><div><label>Nombre</label><input id="p_nombre" value="${esc(u.nombre)}"></div><div><label>Apellido</label><input id="p_apellido" value="${esc(u.apellido)}"></div></div><label>Teléfono</label><input id="p_telefono" value="${esc(u.telefono)}"><label>Preferencias</label><textarea id="p_pref" rows="3">${esc(u.preferencias)}</textarea><p><button class="btn" data-a="guardar">Guardar cambios</button></p></div>`;}
+async function loadAdmin(f){try{AD=await api('/admin/resumen'+(f?'?fecha='+f:''));}catch(e){toast(e.message,true);return go('inicio')}$('#app').innerHTML=admin();}
+function admin(){
+  const max=Math.max(1,...AD.ingresos.map(i=>+i.total));
+  return `<h2>Administración</h2><p class="sub">Agenda, ingresos e inventario</p>
+  <div class="row" style="align-items:end;margin-bottom:10px"><div style="flex:0 0 220px"><label>Agenda del día</label><input type="date" id="afecha" value="${AD.fecha}" data-a="afecha"></div></div>
+  <div class="card" style="overflow:auto"><table><tr><th>Hora</th><th>Cliente</th><th>Profesional</th><th>Servicios</th><th>Total</th><th>Estado</th><th></th></tr>
+  ${AD.agenda.map(c=>`<tr><td>${c.hora}</td><td>${esc(c.cliente)}</td><td>${esc(c.empleado)}</td><td>${esc(c.servicios)}</td><td>${money(c.total)}</td><td><span class="badge ${c.estado}">${c.estado}</span></td><td>${c.estado==='Programada'?`<button class="btn sm" data-a="completar" data-id="${c.id_cita}">Completar</button>`:''}</td></tr>`).join('')||'<tr><td colspan="7" class="muted">Sin citas este día</td></tr>'}</table></div>
+  <div class="grid" style="margin-top:26px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"><div class="card"><h3>Ingresos recientes</h3>${AD.ingresos.map(i=>`<div style="margin-top:12px"><div class="muted">${i.fecha} · <b style="color:var(--ink)">${money(i.total)}</b></div><div class="bar" style="width:${Math.round(i.total/max*100)}%"></div></div>`).join('')||'<p class="muted">Sin ingresos aún</p>'}</div>
+  <div class="card"><h3>Inventario</h3><table>${AD.productos.map(p=>`<tr><td>${esc(p.nombre)}<div class="muted">${money(p.precio)}</div></td><td>${p.stock} uds</td><td><button class="btn alt sm" data-a="vender" data-id="${p.id_producto}">Vender 1</button></td></tr>`).join('')}</table></div></div>`;
+}
+
+// ----- Acciones -----
+const A={
+  go:d=>{if(d.v==='auth')S.mode='login';go(d.v);},
+  mode:d=>{S.mode=d.m;$('#app').innerHTML=authView();},
+  login:async()=>{setSession(await api('/login',{body:{email:val('f_email'),password:val('f_password')}}));toast('¡Bienvenido a Retoque!');go('reservar');},
+  registro:async()=>{setSession(await api('/registro',{body:{nombre:val('f_nombre'),apellido:val('f_apellido'),telefono:val('f_telefono'),email:val('f_email'),password:val('f_password'),preferencias:val('f_pref')}}));toast('Perfil creado');go('reservar');},
+  logout:async()=>{try{await api('/logout',{method:'POST'})}catch{}out();},
+  emp:async d=>{await release();R.emp=+d.id;R.serv=[];R.slots=null;R.fecha='';render();},
+  serv:async d=>{await release();const i=+d.id;R.serv=R.serv.includes(i)?R.serv.filter(x=>x!==i):[...R.serv,i];R.slots=null;R.fecha=R.fecha;R.fecha?await loadSlots():render();},
+  hora:async d=>{const e=empSel();const r=await api('/hold',{body:{empleado:R.emp,fecha:R.fecha,hora:d.h,servicios:R.serv}});R.hora=d.h;R.hold={exp:Date.now()+r.expira*1000};$('#app').innerHTML=book();startTimer();},
+  confirmar:async()=>{await api('/citas',{body:{}});clearHold();R={emp:null,serv:[],fecha:'',slots:null,hora:'',hold:null};toast('¡Cita confirmada!');go('citas');},
+  liberar:async()=>{await release();await loadSlots();},
+  cancelar:async d=>{if(!confirm('¿Cancelar esta cita?'))return;await api(`/citas/${d.id}/cancelar`,{method:'POST'});toast('Cita cancelada');RS=null;go('citas');},
+  reprog:d=>{const id=+d.id;RS=RS&&RS.id===id?null:{id,fecha:'',slots:null};$('#app').innerHTML=citas();},
+  rhora:async d=>{await api('/citas/'+RS.id,{method:'PUT',body:{fecha:RS.fecha,hora:d.h}});toast('Cita reprogramada');RS=null;go('citas');},
+  guardar:async()=>{S.user=await api('/yo',{method:'PUT',body:{nombre:val('p_nombre'),apellido:val('p_apellido'),telefono:val('p_telefono'),preferencias:val('p_pref')}});chrome();toast('Perfil actualizado');},
+  completar:async d=>{await api(`/admin/citas/${d.id}/completar`,{method:'POST'});toast('Cita completada');await loadAdmin(AD.fecha);},
+  vender:async d=>{await api('/admin/ventas',{body:{id_producto:+d.id,cantidad:1}});toast('Venta registrada');await loadAdmin(AD.fecha);}
+};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a]&&t.tagName!=='INPUT')guard(A[t.dataset.a])(t.dataset);});
+document.addEventListener('change',guard(async e=>{const t=e.target;
+  if(t.dataset.a==='fecha'){await release();R.fecha=t.value;await loadSlots();}
+  if(t.dataset.a==='rfecha'){RS.fecha=t.value;const c=MY.find(x=>x.id_cita===RS.id);RS.slots=await api(`/disponibilidad?empleado=${c.id_empleado}&fecha=${RS.fecha}&dur=${c.dur}&ignorar=${c.id_cita}`);$('#app').innerHTML=citas();}
+  if(t.dataset.a==='afecha')await loadAdmin(t.value);}));
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&S.view==='auth'||e.key==='Enter'&&!S.user&&$('#f_email'))guard(A[S.mode])();});
+
+(async()=>{try{[S.serv,S.emp]=await Promise.all([api('/servicios'),api('/empleados')]);if(S.token)S.user=await api('/yo');}catch(e){toast("No se pudo conectar con el servidor",true)}render();})();
+</script></body></html>

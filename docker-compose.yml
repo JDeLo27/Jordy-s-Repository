@@ -1,0 +1,10 @@
+services:
+  postgres:   # datos PERSISTENTES
+    image: postgres:16
+    environment: { POSTGRES_PASSWORD: postgres, POSTGRES_DB: retoque }
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data", "./schema.sql:/docker-entrypoint-initdb.d/schema.sql"]
+  redis:      # datos TEMPORALES
+    image: redis:7
+    ports: ["6379:6379"]
+volumes: { pgdata: {} }
